@@ -1,0 +1,50 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: streamlit-bluegreen
+  namespace: streamlit-bluegreen
+
+spec:
+  replicas: 4
+  revisionHistoryLimit: 3
+
+  selector:
+    matchLabels:
+      app: streamlit
+
+  template:
+    metadata:
+      labels:
+        app: streamlit
+    spec:
+      containers:
+        - name: streamlit
+          image: shaikhdocker/sshuda-streamlit-app:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - name: http
+              containerPort: 8501
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8501
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
+  strategy:
+    blueGreen:
+      activeService: netflix-active
+      previewService: netflix-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 60
