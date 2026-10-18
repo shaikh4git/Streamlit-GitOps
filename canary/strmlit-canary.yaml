@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: netflix
-          image: shaikhdocker/streamlit-app:latest
+          image: shaikhdocker/sshuda-streamlit-app:latest
           imagePullPolicy: IfNotPresent
 
           ports:
