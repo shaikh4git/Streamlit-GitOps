@@ -44,7 +44,7 @@ spec:
 
   strategy:
     blueGreen:
-      activeService: netflix-active
-      previewService: netflix-preview
+      activeService: streamlit-active
+      previewService: streamlit-preview
       autoPromotionEnabled: false
       scaleDownDelaySeconds: 60
