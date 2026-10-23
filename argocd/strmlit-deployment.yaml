@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: streamlit
-          image: shaikhdocker/sshuda-streamlit-app:40-074aef1
+          image: shaikhdocker/sshuda-streamlit-app:43-8928103
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8501
