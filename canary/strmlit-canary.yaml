@@ -43,8 +43,7 @@ spec:
       steps:
         # Stage 1: 25% new version        ss
         - setWeight: 25
-        - pause: # Put {} here to indicate that the pause is a step in the rollout process and wait for manually promote to the stage 2 and remove the duration line.
-            duration: 300s
+        - pause: {} # Indicate that the pause is a step in the rollout process and wait for manually promote to the stage 2 and remove the duration line.
 
         # Stage 2: 50% new version
         - setWeight: 50
