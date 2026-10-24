@@ -46,8 +46,8 @@ spec:
     blueGreen:
       activeService: streamlit-active
       previewService: streamlit-preview
-      autoPromotionEnabled: true
-      autoPromotionSeconds: 300
+      autoPromotionEnabled: false
+      #autoPromotionSeconds: 300
       scaleDownDelaySeconds: 60
 
       
