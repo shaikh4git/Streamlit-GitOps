@@ -4,7 +4,7 @@ metadata:
   name: streamlit-deploy
   namespace: streamlit-argocd
 spec:
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
