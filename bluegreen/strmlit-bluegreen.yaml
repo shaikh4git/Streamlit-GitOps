@@ -6,7 +6,7 @@ metadata:
   namespace: streamlit-bluegreen
 
 spec:
-  replicas: 4
+  replicas: 1
   revisionHistoryLimit: 3
 
   selector:
