@@ -3,20 +3,39 @@ kind: Deployment
 metadata:
   name: streamlit-deploy
   namespace: streamlit-argocd
+
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
   selector:
     matchLabels:
       app: streamlit
+
   template:
     metadata:
       labels:
         app: streamlit
+
     spec:
       containers:
         - name: streamlit
           image: shaikhdocker/sshuda-streamlit-app:34-361522e
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 8501
+
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
